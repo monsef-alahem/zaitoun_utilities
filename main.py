@@ -41,7 +41,7 @@ from pyIslam.hijri import HijriDate
 from pyIslam.qiblah import Qiblah
 from pyIslam.mirath import Mirath
 from pyIslam.zakat import Zakat
-from datetime import date
+from datetime import date, time, datetime
 # import threading
 
 # import zakat, mirath, qiblah, hijri, praytimes
@@ -68,6 +68,9 @@ converted_date = []
 
 mirath = Mirath()
 
+# for keyboard writing
+target_widget = None
+
 eng = 0
 ar = 1
 
@@ -87,26 +90,26 @@ asr_ref = {
 
 
 
-print('\n---testing mirath---\n')
+# print('\n---testing mirath---\n')
 
-test = Mirath()
-# test.add_relative('husband')
-# test.add_relative('wife')
+# test = Mirath()
+# # test.add_relative('husband')
+# # test.add_relative('wife')
+# # test.add_relative('father')
+# # test.add_relative('maternal_grandmother')
+# # test.add_relative('mother')
+# # test.add_relative('paternal_grandmother')
+# # test.add_relative('son', 2)
 # test.add_relative('father')
-# test.add_relative('maternal_grandmother')
-# test.add_relative('mother')
-# test.add_relative('paternal_grandmother')
-# test.add_relative('son', 2)
-test.add_relative('father')
 
-# test.add_relative('grandfather')
-# test.add_relative('maternal_brother', 3)
-# test.add_relative('grandson')
-# test.add_relative('granddaughter')
-test.add_relative('son')
-test.add_relative('daughter', 3)
-test.calculte_mirath()
-test.display_shares()
+# # test.add_relative('grandfather')
+# # test.add_relative('maternal_brother', 3)
+# # test.add_relative('grandson')
+# # test.add_relative('granddaughter')
+# test.add_relative('son')
+# test.add_relative('daughter', 3)
+# test.calculte_mirath()
+# test.display_shares()
 
 
 
@@ -199,11 +202,11 @@ lang = {
 'paternal_cousin_son' : [u'paternal_cousin_son', u'\ufe8f\ufef7\u0020\ufee1\ufecc\ufedf\ufe8d\u0020\ufee5\ufe91\ufe87\u0020\ufee5\ufe91\ufe87'],
 'cousin_grandson' : [u'cousin_grandson', u'\ufee1\ufecc\ufedf\ufe8d\u0020\ufee5\ufe91\ufe87\u0020\ufee5\ufe91\ufe87\u0020\ufee5\ufe91\ufe87'],
 'paternal_cousin_grandson' : [u'paternal_cousin_grandson', u'\ufe8f\ufef7\u0020\ufee1\ufecc\ufedf\ufe8d\u0020\ufee5\ufe91\ufe87\u0020\ufee5\ufe91\ufe87\u0020\ufee5\ufe91\ufe87'],
+'paternal_paternal_uncle' : [u'paternal_paternal_uncle', u'\ufe8f\ufef7\u0020\ufee1\ufecb'],
 
 'add relative' : [u'add relative', u'\ufea9\ufead\ufed3\u0020\ufe94\ufed3\ufe8e\ufebf\ufe87'],
 'clean' : [u'clean', u'\ufecd\ufe8d\ufead\ufed3\ufe87'],
-'config' : [u'config', u'\ufecd\ufe8d\ufead\ufed3\ufe87'],
-'paternal_paternal_uncle' : [u'paternal_paternal_uncle', u'\ufe8f\ufef7\u0020\ufee1\ufecb']
+'config' : [u'config', u'\ufecd\ufe8d\ufead\ufed3\ufe87']
 
 }
 
@@ -399,85 +402,6 @@ cvrt = '''
 #: import ar __main__.ar
 #: import eng __main__.eng
 
-<Keyboard>:
-    FloatLayout:
-        ScreenLabel:
-            id: kb_val
-            size_hint: (.6, 0.09)
-            pos_hint: {'x':.2, 'y':.6}
-            text: ''
-        GridLayout:
-            id: kb
-            size_hint: (.6, .40)
-            pos_hint: {'x':.2, 'y':.2}
-            rows: 6
-
-            Button:
-                text: u'1'
-                # text: str(asr_ref['Hanafi'])
-                on_press: root.enter_number(kb_val, 1)
-            Button:
-                text: u'2'
-                on_press: root.enter_number(kb_val, 2)
-            Button:
-                text: u'3'
-                on_press: root.enter_number(kb_val, 3)
-
-            Button:
-                text: u'4'
-                on_press: root.enter_number(kb_val, 4)
-            Button:
-                text: u'5'
-                on_press: root.enter_number(kb_val, 5)
-            Button:
-                text: u'6'
-                on_press: root.enter_number(kb_val, 6)
-
-            Button:
-                text: u'7'
-                on_press: root.enter_number(kb_val, 7)
-            Button:
-                text: u'8'
-                on_press: root.enter_number(kb_val, 8)
-            Button:
-                text: u'9'
-                on_press: root.enter_number(kb_val, 9)
-
-            Button:
-                text: u'<-'
-                #on_press: kb_val.text = ''
-                on_press: kb_val.text = kb_val.text[:-1]
-            Button:
-                text: u'0'
-                on_press: root.enter_number(kb_val, 0)
-            Button:
-                id: ok
-                font_name: 'simpbdo.ttf'
-                text: lang['ok'][ar]
-
-                on_press: root.validate(kb_val.text)
-                # on_press: root.convert(kb_val)
-
-            # ZaitounLabel:
-            #     opacity:0
-            Button:
-                text: u'-'
-                on_press: root.enter_number(kb_val, '-')
-
-            Button:
-                id: clean_kb
-                text: lang['clean'][ar]
-                font_name: 'simpbdo.ttf'
-                # text: u'clean'
-                on_press: kb_val.text = ''
-                #on_press: kb_val.text = kb_val.text[:-1]
-
-            # ZaitounLabel:
-            #     opacity:0
-            Button:
-                text: u'.'
-                on_press: root.enter_number(kb_val, '.')
-
 
 <Zaitoun>:
     
@@ -651,7 +575,7 @@ cvrt = '''
             size_hint: (.2, .1)
             pos_hint: {'x':.4, 'y':.35}
             # background_color: 3,3,3,1
-            on_press: root.show_popup(date_input)
+            on_press: root.attach_kb(date_input)
 
         Button:
             id: delete_btn
@@ -687,8 +611,8 @@ cvrt = '''
 
 
         GridLayout:
-            size_hint: (.6, .30)
-            pos_hint: {'x':.2, 'y':.2}
+            size_hint: (.6, .40)
+            pos_hint: {'x':.2, 'y':.35}
             rows: 6
 
 
@@ -810,7 +734,7 @@ cvrt = '''
             id: pray_calcul
             text: lang['calculate'][ar]
             font_name: 'simpbdo.ttf'
-            size_hint: (.2, .1)
+            size_hint: (.2, .09)
             pos_hint: {'x':.19, 'y':.10}
             # background_color: 3,3,3,1
             on_press: root.calculate_praytime()
@@ -820,6 +744,7 @@ cvrt = '''
             id: today_date
             # font_name: 'simpbdo.ttf'
             text: ''
+            halign: "center"
             size_hint: (.6, .09)
             pos_hint: {'x':.2, 'y':.90}
             canvas:
@@ -881,6 +806,16 @@ cvrt = '''
 
 
 
+
+
+
+
+
+
+
+
+
+
 # configuration praytime
     FloatLayout:
         size_hint: (1, 1)
@@ -901,7 +836,7 @@ cvrt = '''
                 id: timezone
                 # background_color: 3,3,3,1
                 text: '1'
-                on_press: root.show_popup(timezone2)
+                on_press: root.attach_kb(timezone)
         
         BoxLayout:
             size_hint: (.8, .09)
@@ -916,7 +851,7 @@ cvrt = '''
             Button:
                 id: latitude
                 # background_color: 3,3,3,1
-                on_press: root.show_popup(latitude)
+                on_press: root.attach_kb(latitude)
                 text: '33.546'
 
         BoxLayout:
@@ -933,7 +868,7 @@ cvrt = '''
                 id: longitude
                 text: '-7.444'
                 # background_color: 3,3,3,1
-                on_press: root.show_popup(longitude)
+                on_press: root.attach_kb(longitude)
 
             
         BoxLayout:
@@ -1175,6 +1110,92 @@ cvrt = '''
 
 
 
+    FloatLayout:
+        id: keyboard
+        ScreenLabel:
+            id: kb_val
+            size_hint: (.6, 0.09)
+            pos_hint: {'x':.2, 'y':.6}
+            text: ''
+        GridLayout:
+            id: kb
+            size_hint: (.6, .40)
+            pos_hint: {'x':.2, 'y':.2}
+            rows: 6
+
+            Button:
+                text: u'1'
+                # text: str(asr_ref['Hanafi'])
+                on_press: root.enter_number(1)
+            Button:
+                text: u'2'
+                on_press: root.enter_number(2)
+            Button:
+                text: u'3'
+                on_press: root.enter_number(3)
+
+            Button:
+                text: u'4'
+                on_press: root.enter_number(4)
+            Button:
+                text: u'5'
+                on_press: root.enter_number(5)
+            Button:
+                text: u'6'
+                on_press: root.enter_number(6)
+
+            Button:
+                text: u'7'
+                on_press: root.enter_number(7)
+            Button:
+                text: u'8'
+                on_press: root.enter_number(8)
+            Button:
+                text: u'9'
+                on_press: root.enter_number(9)
+
+            Button:
+                text: u'<-'
+                #on_press: kb_val.text = ''
+                on_press: kb_val.text = kb_val.text[:-1]
+            Button:
+                text: u'0'
+                on_press: root.enter_number(kb_val, 0)
+            Button:
+                id: ok
+                font_name: 'simpbdo.ttf'
+                text: lang['ok'][ar]
+
+                on_press: root.validate(kb_val.text)
+                # on_press: root.convert(kb_val)
+
+            # ZaitounLabel:
+            #     opacity:0
+            Button:
+                text: u'-'
+                on_press: root.enter_number('-')
+
+            Button:
+                id: clean_kb
+                text: lang['clean'][ar]
+                font_name: 'simpbdo.ttf'
+                # text: u'clean'
+                on_press: kb_val.text = ''
+                #on_press: kb_val.text = kb_val.text[:-1]
+
+            # ZaitounLabel:
+            #     opacity:0
+            Button:
+                text: u'.'
+                on_press: root.enter_number('.')
+
+
+
+
+
+
+
+
 
 
 
@@ -1402,21 +1423,6 @@ class MySpinner(Spinner):
     # option_cls = ObjectProperty(MyButton) # setting this property inside kv doesn't seem to work
 
 
-class Keyboard(Popup):
-    target_widget = None
-
-    def __init__(self, target_widget, **kwargs):
-        super(Keyboard, self).__init__(**kwargs)
-        self.target_widget = target_widget
-
-    def enter_number(self, kb_val, number):
-        kb_val.text += (str)(number)
-        # if len(kb_val.text) == 2 or len(kb_val.text) == 5:
-        #     kb_val.text += (str)('-')
-
-    def validate(self, value):
-        self.target_widget.text = value
-        self.dismiss()
 
 
 
@@ -1476,16 +1482,16 @@ class Zaitoun(FloatLayout):
             # self.add_widget()
             # self.remove_widget(self.ids.kb)
             self.current_layout = self.ids.menu
-            p = Keyboard(self)
-            p.open()
-            p.dismiss()
+            # p = Keyboard(self)
+            # p.open()
+            # p.dismiss()
             self.clear_widgets()
             self.add_widget(self.ids.menu)
             # if self.sound:
             #     print("Sound found at %s" % self.sound.source)
             #     print("Sound is %.3f seconds" % self.sound.length)
             #     self.sound.play()
-                
+
             for i in range(10):
                 lbl = Label(text= '')
                 # lbl = Label(text= str(i))
@@ -1519,6 +1525,15 @@ class Zaitoun(FloatLayout):
 
 
     #functions for buttons
+
+
+    def attach_kb(self, target):
+        self.add_widget(self.ids.keyboard)
+        global target_widget
+        target_widget = target
+        # self.add_widget(self.ids.keyboard, len(self.children))
+    def detach_kb(self):
+        self.remove_widget(self.ids.keyboard)
 
 
     def show_kb(self):
@@ -1611,9 +1626,6 @@ class Zaitoun(FloatLayout):
             type_btn.background_color = 0,2,1,1
             type_btn.text = "hijri"
 
-    def show_popup(self, target_widget):
-        p = Keyboard(target_widget)
-        p.open()
 
 
     # def auto_destruct(self, id):
@@ -1702,8 +1714,15 @@ class Zaitoun(FloatLayout):
 
         #method 1
         dat = date.today()
+        tim = datetime.now()
         mydate = Date('g', dat.day, dat.month, dat.year)
-        self.ids.today_date.text = mydate.tell_day()
+
+        minute = str(tim.minute)
+
+        if tim.minute < 10 :
+            minute = "0" + minute
+
+        self.ids.today_date.text = mydate.tell_day() + '\n' + str(tim.hour) + ':' + minute
 
         #method 2
         # hijri = HijriDate.today()
@@ -1728,7 +1747,8 @@ class Zaitoun(FloatLayout):
         m.text = str(pt.maghreb_time())
         i.text = str(pt.ishaa_time())
 
-        self.needle_angle = float(Qiblah(pconf).direction()) + 90.
+        # self.needle_angle = float(Qiblah(pconf).direction()) + 90.
+        t_angle = float(Qiblah(pconf).direction()) * -1
 
         # Animation(needle_angle= 90).start(self)
         
@@ -1736,11 +1756,12 @@ class Zaitoun(FloatLayout):
 
         #self.ids.needle.canvas = 90.
 
-        Animation(needle_angle=180).start(self)
+        Animation(needle_angle= t_angle, duration= .5).start(self)
 
 
         print(self.needle_angle)
-        self.ids.qibla.text = str(self.needle_angle)
+        self.ids.qibla.text = str("{0:.2f}".format(-t_angle)) + ' : ' + lang['qibla'][ar]
+        # "{0:.2f}".format(self.needle_angle)
 
 
         # def calculate_qiblah(self):
@@ -1921,6 +1942,23 @@ class Zaitoun(FloatLayout):
 
         self.ids.add_relative.text = lang['add relative'][lg]
         self.ids.mirath_cln.text = lang['clean'][lg]
+
+
+
+
+    def enter_number(self, number):
+        self.ids.kb_val.text += (str)(number)
+        if  self.current_layout == self.ids.date:
+            if len(self.ids.kb_val.text) == 2 or len(self.ids.kb_val.text) == 5:
+                self.ids.kb_val.text += (str)('-')
+
+
+    def validate(self, value):
+        global target_widget
+        target_widget.text = value
+        self.detach_kb()
+
+
 
 
 
