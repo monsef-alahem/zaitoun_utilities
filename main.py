@@ -67,12 +67,19 @@ from kivy.uix.accordion import Accordion
 converted_date = []
 
 mirath = Mirath()
+zakat = Zakat()
 
 # for keyboard writing
 target_widget = None
 
 eng = 0
 ar = 1
+
+latitude = '0'
+longitude = '0'
+timezone = '0'
+fajr_isha_method = ' '
+asr_fiqh = ' '
 
 isha_ref = {
     'University of Islamic Sciences, Karachi' : 1,
@@ -139,7 +146,7 @@ lang = {
 # ufec2 replaced by ufec1
 
 'ok' : [u'ok', u'\ufed5\ufed3\ufe8d\ufeed\ufee3'],
-'*Zaitoun utilities*' : [u'*Zaitoun utilities*', u'\u002a\ufee5\ufeed\ufe98\ufef3\ufeaf\ufedf\ufe8d\u0020\ufe95\ufe8d\ufeed\ufea9\ufe83\u0029'],
+'*Zaitoun utilities*' : [u'*Zaitoun utilities*', u'\u002a\ufee5\ufeed\ufe98\ufef3\ufeaf\ufedf\ufe8d\u0020\ufe95\ufe8d\ufeed\ufea9\ufe83\u002a'],
 'date converter' : [u'date converter', u'\ufea6\ufef3\ufead\ufe8e\ufe98\ufedf\ufe8d\u0020\ufedd\ufeed\ufea4\ufee3'],
 'prayer time' : [u'prayer time', u'\ufe93\ufefc\ufebc\ufedf\ufe8d\u0020\ufe95\ufe8e\ufed7\ufeed\ufe83'],
 'mirath calculator' : [u'mirath calculator', u'\ufe99\ufe8d\ufead\ufef4\ufee4\ufedf\ufe8d\u0020\ufe8f\ufeb3\ufe8e\ufea3'],
@@ -161,17 +168,18 @@ lang = {
 'timezone' : [u'timezone', u'\ufe94\ufef4\ufee8\ufee3\ufeaf\ufedf\ufe8d\u0020\ufe94\ufed8\ufec1\ufee8\ufee4\ufedf\ufe8d'],
 'longitude' : [u'longitude', u'\ufebd\ufead\ufecc\ufedf\ufe8d\u0020\ufec1\ufea7'],
 'latitude' : [u'latitude', u'\ufedd\ufeed\ufec1\ufedf\ufe8d\u0020\ufec1\ufea7'],
-"University of Islamic Sciences, Karachi" : [u"University of Islamic Sciences, Karachi", u'\u0020\ufee1\ufeed\ufee0\ufecc\ufedf\ufe8d\u0020\ufe94\ufecc\ufee3\ufe8e\ufe9f\ufef2\ufe9f\ufe8d\ufead\ufedc\ufedf\ufe8d\u002c\ufe94\ufef4\ufee3\ufefc\ufeb3\ufef9\ufe8d'],
+"University of Islamic Sciences, Karachi" : [u"University of Islamic Sciences, Karachi", u'\ufef2\ufe9f\ufe8d\ufead\ufedc\ufedf\ufe8d\u0020\u002c\ufe94\ufef4\ufee3\ufefc\ufeb3\ufef9\ufe8d\u0020\ufee1\ufeed\ufee0\ufecc\ufedf\ufe8d\u0020\ufe94\ufecc\ufee3\ufe8e\ufe9f'],
 "Muslim World League" : [u"Muslim World League", u'\ufef2\ufee3\ufefc\ufeb3\ufef9\ufe8d\u0020\ufee1\ufedf\ufe8e\ufecc\ufedf\ufe8d\u0020\ufe94\ufec1\ufe91\ufe8d\ufead'],
-"Egyptian General Authority of Survey" : [u'Egyptian General Authority of Survey', u'\ufe94\ufef3\ufead\ufebc\ufee4\ufedf\ufe8d\u0020\ufe94\ufe8c\ufef4\ufeec\ufedf\ufe8d\ufe94\ufea3\ufe8e\ufeb4\ufee4\ufee0\ufedf\u0020\ufe94\ufee3\ufe8e\ufecc\ufedf\ufe8d'],
-"Umm al-Qura University, Makkah" : [u'Umm al-Qura University, Makkah', u'\u0020\ufee1\ufe83\u0020\ufe94\ufecc\ufee3\ufe8e\ufe9f\ufe94\ufedc\ufee3\u0020\u002c\ufeef\ufead\ufed8\ufedf\ufe8d'],
-"Islamic Society of North America" : [u'Islamic Society of North America', u'\u0020\ufe94\ufef4\ufee3\ufefc\ufeb3\ufef9\ufe8d\u0020\ufe94\ufedb\ufe8d\ufead\ufeb8\ufedf\ufe8d\ufe94\ufef4\ufedf\ufe8e\ufee4\ufeb8\ufedf\ufe8d\u0020\ufe94\ufef4\ufedc\ufef3\ufead\ufee3\ufef7\ufe8d'],
+"Egyptian General Authority of Survey" : [u'Egyptian General Authority of Survey', u'\ufe94\ufea3\ufe8e\ufeb4\ufee4\ufee0\ufedf\u0020\ufe94\ufee3\ufe8e\ufecc\ufedf\ufe8d\u0020\ufe94\ufef3\ufead\ufebc\ufee4\ufedf\ufe8d\u0020\ufe94\ufe8c\ufef4\ufeec\ufedf\ufe8d'],
+"Umm al-Qura University, Makkah" : [u'Umm al-Qura University, Makkah', u'\ufe94\ufedc\ufee3\u0020\u002c\ufeef\ufead\ufed8\ufedf\ufe8d\u0020\ufee1\ufe83\u0020\ufe94\ufecc\ufee3\ufe8e\ufe9f'],
+"Islamic Society of North America" : [u'Islamic Society of North America', u'\ufe94\ufef4\ufedf\ufe8e\ufee4\ufeb8\ufedf\ufe8d\u0020\ufe94\ufef4\ufedc\ufef3\ufead\ufee3\ufef7\ufe8d\u0020\ufe94\ufef4\ufee3\ufefc\ufeb3\ufef9\ufe8d\u0020\ufe94\ufedb\ufe8d\ufead\ufeb8\ufedf\ufe8d'],
 
 'asr method' : [u'asr method', u'\ufead\ufebc\ufecc\ufedf\ufe8d\u0020\ufe8f\ufeeb\ufeab\ufee3'],
-'ishaa method' : [u'ishaa method', u'\ufe8d\u0020\ufe8f\ufeeb\ufeab\ufee3'],
+'ishaa method' : [u'ishaa method', u'\ufe80\ufe8e\ufeb8\ufecc\ufedf\ufe8d\ufeed\u0020\ufead\ufea0\ufed4\ufedf\ufe8d\u0020\ufe94\ufed8\ufef3\ufead\ufec1'],
+# 'ishaa method' : [u'ishaa method', u'\ufe8d\u0020\ufe8f\ufeeb\ufeab\ufee3'],
 
-'Hanafi' : [u'Hanafi', u'\ufe9d\ufeed\ufeaf'],
-'Shafii' : [u'Shafii', u'\ufe94\ufe9f\ufeed\ufeaf'],
+'Hanafi' : [u'Hanafi', u'\ufef2\ufed4\ufee8\ufea3'],
+'Shafii' : [u'Shafii', u'\ufef2\ufecc\ufed3\ufe8e\ufeb7'],
 
 'husband' : [u'husband', u'\ufe9d\ufeed\ufeaf'],
 'wife' : [u'wife', u'\ufe94\ufe9f\ufeed\ufeaf'],
@@ -206,7 +214,23 @@ lang = {
 
 'add relative' : [u'add relative', u'\ufea9\ufead\ufed3\u0020\ufe94\ufed3\ufe8e\ufebf\ufe87'],
 'clean' : [u'clean', u'\ufecd\ufe8d\ufead\ufed3\ufe87'],
-'config' : [u'config', u'\ufecd\ufe8d\ufead\ufed3\ufe87']
+'config' : [u'config', u'\ufea9\ufe8d\ufea9\ufecb\ufe87'],
+
+'steps' : [u'steps', u'\ufe94\ufea0\ufef4\ufe98\ufee8\ufedf\ufe8d'],
+'results' : [u'results', u'\ufe95\ufe8d\ufeed\ufec1\ufea8\ufedf\ufe8d'],
+
+'touch here' : [u'touch here', u'\ufe8e\ufee8\ufeeb\u0020\ufec1\ufed0\ufec5\ufe8d'],
+
+'money' : [u'money', u'\ufedd\ufe8e\ufee4\ufedf\ufe8d'],
+'harvest' : [u'harvest', u'\ufedd\ufeed\ufebc\ufea4\ufee4\ufedf\ufe8d'],
+
+
+'artificial irigation' : [u'artificial irigation', u'\ufef2\ufecc\ufef4\ufe92\ufec1\u0020\ufef1\ufead\ufedf\ufe8d'],
+'natural irigation' : [u'natural irigation', u'\ufef2\ufe8b\ufe8e\ufed8\ufee0\ufe97\u0020\ufead\ufef4\ufecf\u0020\ufef1\ufead\ufedf\ufe8d'],
+'hanafi nisab' : [u'hanafi nisab', u'\ufef2\ufed4\ufee8\ufea4\ufedf\ufe8d\u0020\ufe8f\ufe8e\ufebc\ufee8\ufedf\ufe8d'],
+'others nisab' : [u'others nisab', u'\ufe94\ufee3\ufe8e\ufecc\ufedf\ufe8d\u0020\ufe8f\ufeb4\ufea3\u0020\ufe8f\ufe8e\ufebc\ufee8\ufedf\ufe8d']
+
+
 
 }
 
@@ -477,7 +501,7 @@ cvrt = '''
             font_name: 'simpbdo.ttf'
             size_hint: (.4, .1)
             pos_hint: {'x':.3, 'y':.3}
-            on_press: root.goto_layout(date)
+            on_press: root.goto_layout(zakat)
                 
         Button:
             id: langage_btn
@@ -571,7 +595,8 @@ cvrt = '''
 
         Button:
             id: date_input
-            text: '23-12-2009'
+            text: lang['touch here'][ar]
+            font_name: 'simpbdo.ttf'
             size_hint: (.2, .1)
             pos_hint: {'x':.4, 'y':.35}
             # background_color: 3,3,3,1
@@ -818,9 +843,9 @@ cvrt = '''
 
 # configuration praytime
     FloatLayout:
+        id: praytime_config
         size_hint: (1, 1)
         pos_hint: {'x':0, 'y':.0}
-        id: praytime_config
 
         BoxLayout:
             size_hint: (.8, .09)
@@ -949,8 +974,8 @@ cvrt = '''
 
 
         Accordion:
-            size_hint: (1, .5)
-            pos_hint: {'x':0, 'y':.5}
+            size_hint: (1, .7)
+            pos_hint: {'x':0, 'y':.3}
             orientation: 'vertical'
 
             AccordionItem:
@@ -987,15 +1012,6 @@ cvrt = '''
                             # valign: "top"
                             # # valign: "middle"
 
-        Button:
-            id: mirath_ret
-            text: lang['return'][ar]
-            font_name: 'simpbdo.ttf'
-            #background_color: 0,2,1,1
-            size_hint: (.2, .1)
-            pos_hint: {'x':.7, 'y':.08}
-            on_press: root.goto_layout(menu)
-
         # Button:
         #     id: add_mirath
         #     text: lang['add relative'][ar]
@@ -1020,13 +1036,13 @@ cvrt = '''
             text: lang['calculate'][ar]
             font_name: 'simpbdo.ttf'
             size_hint: (.2, .08)
-            pos_hint: {'x':.4, 'y':.3}
+            pos_hint: {'x':.4, 'y':.1}
             # background_color: 3,3,3,1
             on_press: root.calculte_mirath()
 
         BoxLayout:
             size_hint: (.8, .08)
-            pos_hint: {'x':.1, 'y':.40}
+            pos_hint: {'x':.1, 'y':.20}
             canvas:
                 Color:
                     rgba: 0,0,0,1
@@ -1087,18 +1103,132 @@ cvrt = '''
             text: lang['clean'][ar]
             font_name: 'simpbdo.ttf'
             #background_color: 0,2,1,1
-            size_hint: (.2, .1)
-            pos_hint: {'x':.4, 'y':.08}
+            size_hint: (.2, .08)
+            pos_hint: {'x':.1, 'y':.04}
             on_press: root.clean()
 
         Button:
             id: mirath_del
             text: lang['delete'][ar]
             font_name: 'simpbdo.ttf'
+            disabled: True
+            #background_color: 0,2,1,1
+            size_hint: (.2, .08)
+            pos_hint: {'x':.4, 'y':.04}
+            on_press: root.activate_delete()
+
+        Button:
+            id: mirath_ret
+            text: lang['return'][ar]
+            font_name: 'simpbdo.ttf'
+            #background_color: 0,2,1,1
+            size_hint: (.2, .08)
+            pos_hint: {'x':.7, 'y':.04}
+            on_press: root.goto_layout(menu)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#zakat
+    FloatLayout:
+        id: zakat
+        size_hint: (1, 1)
+        pos_hint: {'x':0, 'y':.0}
+        orientation: 'vertical'
+
+
+        ScreenLabel:
+            id: z_result
+            text: '0 $'
+            size_hint: (.2, .1)
+            pos_hint: {'x':.4, 'y':.8}
+            background_color: 0,2,1,1
+
+        Button:
+            id: zakat_input
+            text: lang['touch here'][ar]
+            font_name: 'simpbdo.ttf'
+            size_hint: (.2, .1)
+            pos_hint: {'x':.4, 'y':.7}
+            on_press: root.attach_kb(zakat_input)
+
+        Button:
+            id: zakat_validate
+            text: lang['calculate'][ar]
+            font_name: 'simpbdo.ttf'
+            size_hint: (.2, .08)
+            pos_hint: {'x':.4, 'y':.6}
+            # background_color: 3,3,3,1
+            on_press: root.calculte_zakat()
+
+
+
+
+
+
+        Button:
+            id: zakat_type
+            text: lang['money'][ar]
+            font_name: 'simpbdo.ttf'
+            size_hint: (.16, .08)
+            pos_hint: {'x':.17, 'y':.3}
+            # background_color: 3,3,3,1
+            on_press: root.change_zakat_type()
+
+        Button:
+            id: irigation_type
+            text: lang['natural irigation'][ar]
+            font_name: 'simpbdo.ttf'
+            disabled: True
+            size_hint: (.16, .08)
+            pos_hint: {'x':.42, 'y':.3}
+            # background_color: 3,3,3,1
+            on_press: root.change_irigation_type()
+
+        Button:
+            id: zakat_madhab
+            text: lang['hanafi nisab'][ar]
+            font_name: 'simpbdo.ttf'
+            disabled: True
+            size_hint: (.16, .08)
+            pos_hint: {'x':.67, 'y':.3}
+            # background_color: 3,3,3,1
+            on_press: root.change_zakat_madhab()
+
+
+
+        Button:
+            id: zakat_ret
+            text: lang['return'][ar]
+            font_name: 'simpbdo.ttf'
             #background_color: 0,2,1,1
             size_hint: (.2, .1)
-            pos_hint: {'x':.1, 'y':.08}
-            on_press: root.activate_delete()
+            pos_hint: {'x':.7, 'y':.08}
+            on_press: root.goto_layout(menu)
+
+
+
+
+
+
+
+
+
 
 
 
@@ -1112,6 +1242,12 @@ cvrt = '''
 
     FloatLayout:
         id: keyboard
+        canvas:
+            Color:
+                rgba: 0,0,0,1
+            Rectangle:
+                pos: self.pos
+                size: self.size
         ScreenLabel:
             id: kb_val
             size_hint: (.6, 0.09)
@@ -1160,7 +1296,7 @@ cvrt = '''
                 on_press: kb_val.text = kb_val.text[:-1]
             Button:
                 text: u'0'
-                on_press: root.enter_number(kb_val, 0)
+                on_press: root.enter_number(0)
             Button:
                 id: ok
                 font_name: 'simpbdo.ttf'
@@ -1459,20 +1595,36 @@ class Zaitoun(FloatLayout):
     curent_langage = ar
 
     date = FloatLayout()
+    pray_conf = FloatLayout()
 
 
 
     day = 1
     month = 1
     year = 1
+
+    # 'h' for hijri and 'g' for gregorian
     date_type = 'h'
+
+    # 'm' for money and 'h' for harvest
+    zakat_type = 'm'
+
+    # 'n' for natural and 'a' for artificial
+    irigation_type = 'n'
+
+    # 's' for hanafi and 'o' for other
+    zakat_madhab = 'h'
+
+
     # global ype
     
     #ti = ObjectProperty(None)
 
     def __init__(self, **kwargs):
         super(Zaitoun, self).__init__(**kwargs)
+        self.pray_conf = self.ids.praytime_config
         self.date = self.ids.date
+
         
     def update(self, dt):
 
@@ -1485,8 +1637,28 @@ class Zaitoun(FloatLayout):
             # p = Keyboard(self)
             # p.open()
             # p.dismiss()
+
+            global latitude
+            latitude = self.ids.latitude.text
+            global longitude
+            longitude = self.ids.longitude.text
+            global timezone
+            timezone = self.ids.timezone.text
+            global fajr_isha_method
+            fajr_isha_method = self.ids.isha_ref.text
+            global asr_fiqh
+            asr_fiqh = self.ids.asr_madhab.text
+
+
+            self.date = self.ids.date
+            self.pray_conf = self.ids.praytime_config
             self.clear_widgets()
             self.add_widget(self.ids.menu)
+
+
+            # self.goto_layout(self.ids.praytime_config)
+            # self.goto_layout(self.ids.menu)
+            
             # if self.sound:
             #     print("Sound found at %s" % self.sound.source)
             #     print("Sound is %.3f seconds" % self.sound.length)
@@ -1532,9 +1704,9 @@ class Zaitoun(FloatLayout):
         global target_widget
         target_widget = target
         # self.add_widget(self.ids.keyboard, len(self.children))
+
     def detach_kb(self):
         self.remove_widget(self.ids.keyboard)
-
 
     def show_kb(self):
         if not self.iskb:
@@ -1556,6 +1728,19 @@ class Zaitoun(FloatLayout):
         # for i in range(len(layout.children)):
         #     print(layout.children[i].id)
 
+        global latitude
+        latitude = self.ids.latitude.text
+        global longitude
+        longitude = self.ids.longitude.text
+        global timezone
+        timezone = self.ids.timezone.text
+        global fajr_isha_method
+        fajr_isha_method = self.ids.isha_ref.text
+        global asr_fiqh
+        asr_fiqh = self.ids.asr_madhab.text
+
+
+
 
     def enter_number(self, page_val, number):
         page_val.text += (str)(number)
@@ -1566,7 +1751,10 @@ class Zaitoun(FloatLayout):
         # if page_val.text == '0':
         #     page_val.text = u''
 
-    def convert(self, page_val):
+    def convert(self, date_input):
+
+        if self.ids.date_input.text == lang['touch here'][ar]:
+            return
 
         result = self.ids.result
         result.text = ''
@@ -1574,10 +1762,10 @@ class Zaitoun(FloatLayout):
         type_btn = self.ids.type_btn
         date_type = self.date_type
 
-        day, month, year = page_val.text.split('-', 2)
+        day, month, year = date_input.text.split('-', 2)
         date = Date(date_type,int(day),int(month),int(year))
 
-        page_val.text = '23-06-2019'
+        # date_input.text = '23-06-2019'
         result.text = (str)(date.tell_day()) 
 
 
@@ -1699,14 +1887,30 @@ class Zaitoun(FloatLayout):
 
         lg = self.curent_langage
 
+
+        global latitude
+        latitude = self.ids.latitude.text
+        global longitude
+        longitude = self.ids.longitude.text
+        global timezone
+        timezone = self.ids.timezone.text
+        global fajr_isha_method
+        fajr_isha_method = self.ids.isha_ref.text
+        global asr_fiqh
+        asr_fiqh = self.ids.asr_madhab.text
+
+
+
+
+
         latitude = float(self.ids.latitude.text)
         longitude = float(self.ids.longitude.text)
         timezone = float(self.ids.timezone.text)
 
 
         fajr_isha_method = isha_ref[get_key_tab(self, lang, self.ids.isha_ref.text, lg)]
-        # asr_fiqh = asr_ref[get_key_tab(self, lang, self.ids.asr_madhab.text, lg)]
-        asr_fiqh = 1
+        asr_fiqh = asr_ref[get_key_tab(self, lang, self.ids.asr_madhab.text, lg)]
+        # asr_fiqh = 1
 
 
         pconf = PrayerConf(longitude, latitude, timezone, fajr_isha_method, asr_fiqh)
@@ -1769,6 +1973,9 @@ class Zaitoun(FloatLayout):
         # PushMatrix()
         # self.ids.needle.rot = Rotate(1, 0, 1, 0)
         # PopMatrix()
+
+
+
 
 
 
@@ -1840,6 +2047,62 @@ class Zaitoun(FloatLayout):
         # for i in range(10):
         #     lbl = Label(text= str(i))
         #     self.ids.mirath_box.add_widget(lbl)
+
+
+    def calculte_zakat(self):
+
+
+
+        #security
+        if self.ids.zakat_input.text == lang['touch here'][ar]:
+            return
+                # if self.ids.zakat_input.text == get_key_tab(self, lang, u'touch here', lg):
+
+
+        if self.zakat_type == 'm':
+            self.ids.z_result.text = str(zakat.calculate_zakat(int(self.ids.zakat_input.text))) + ' $'
+        elif self.zakat_type == 'h' and self.irigation_type == 'n':
+            if self.zakat_madhab == 'h':
+                self.ids.z_result.text = str(zakat.calculate_zakat_harvest(int(self.ids.zakat_input.text), 'natural', 'hanafi')) + ' kg'
+            elif self.zakat_madhab == 'o':
+                self.ids.z_result.text = str(zakat.calculate_zakat_harvest(int(self.ids.zakat_input.text), 'natural', 'other')) + ' kg'
+
+        elif self.zakat_type == 'h' and self.irigation_type == 'a':
+            if self.zakat_madhab == 'h':
+                self.ids.z_result.text = str(zakat.calculate_zakat_harvest(int(self.ids.zakat_input.text), 'artificial', 'hanafi')) + ' kg'
+            elif self.zakat_madhab == 'o':
+                self.ids.z_result.text = str(zakat.calculate_zakat_harvest(int(self.ids.zakat_input.text), 'artificial', 'other')) + ' kg'
+
+
+        # + ' Kg'
+
+    def change_zakat_type(self):
+        if self.zakat_type == 'm':
+            self.zakat_type = 'h'
+            self.ids.zakat_type.text = lang['harvest'][ar]
+            self.ids.irigation_type.disabled = False
+            self.ids.zakat_madhab.disabled = False
+        else:
+            self.zakat_type = 'm'
+            self.ids.zakat_type.text = lang['money'][ar]
+            self.ids.irigation_type.disabled = True
+            self.ids.zakat_madhab.disabled = True
+
+    def change_irigation_type(self):
+        if self.irigation_type == 'n':
+            self.irigation_type = 'a'
+            self.ids.irigation_type.text = lang['artificial irigation'][ar]
+        else:
+            self.irigation_type = 'n'
+            self.ids.irigation_type.text = lang['natural irigation'][ar]
+
+    def change_zakat_madhab(self):
+        if self.zakat_madhab == 'h':
+            self.zakat_madhab = 'o'
+            self.ids.zakat_madhab.text = lang['others nisab'][ar]
+        else:
+            self.zakat_madhab = 'h'
+            self.ids.zakat_madhab.text = lang['hanafi nisab'][ar]
 
     def change_langage(self):
 
@@ -1983,6 +2246,7 @@ class ZaitounApp(App):
         self.icon = 'Zaitoun.png'
         self.wdg = Zaitoun(size= Window.size)
         main_wdg = self.wdg
+        lg = self.wdg.curent_langage
 
 
 
@@ -2014,9 +2278,30 @@ class ZaitounApp(App):
             f.close()
         except:
             pass
-        #main_wdg.ids.hist_box.remove_widget(main_wdg.ids.btn1)
-        #print(main_wdg.ids.hist_box.children[0].id)
-        # print('kkjkjkkjk')
+
+
+        try:
+            f = open("pray_conf.dat")
+            line = f.readline()
+            main_wdg.ids.latitude.text = line[:-1]
+            line = f.readline()
+            main_wdg.ids.longitude.text = line[:-1]
+            line = f.readline()
+            main_wdg.ids.timezone.text = line[:-1]
+            line = f.readline()
+            main_wdg.ids.isha_ref.text = lang[line[:-1]][lg]
+            line = f.readline()
+            main_wdg.ids.asr_madhab.text = lang[line[:-1]][lg]
+
+            # self.wdg.ids.latitude.text = f.readline()
+            # self.wdg.ids.longitude.text = f.readline()
+            # self.wdg.ids.timezone.text = f.readline()
+            # self.wdg.ids.isha_ref.text = f.readline()
+        
+            f.close()
+        except:
+            pass
+
 
 
 
@@ -2035,12 +2320,45 @@ class ZaitounApp(App):
 
     #when user exit the app auto-save his session
     def on_stop(self):
+        lg = self.wdg.curent_langage
+
+
         # f = open("pray_conf.dat", "w")
         f = open("date_log.dat", "w")
         f.write(str(len(converted_date)))  
         for i in range(len(converted_date)):
             f.write("\n")
             f.write(converted_date[i])
+        f.close()
+
+        f = open("pray_conf.dat", "w")
+
+        global latitude
+        global longitude
+        global timezone
+        global fajr_isha_method
+        fajr_isha_method = get_key_tab(self, lang, fajr_isha_method, lg)
+        global asr_fiqh
+        asr_fiqh = get_key_tab(self, lang, asr_fiqh, lg)
+        
+        # latitude = self.wdg.pray_conf.ids.latitude.text
+        # longitude = self.wdg.ids.longitude.text
+        # timezone = self.wdg.ids.timezone.text
+        # fajr_isha_method = get_key_tab(self, lang, self.wdg.ids.isha_ref.text, lg)
+        
+        # fajr_isha_method = isha_ref[get_key_tab(self, lang, self.wdg.ids.isha_ref.text, lg)]
+
+        f.write(latitude)
+        f.write("\n")
+        f.write(longitude)
+        f.write("\n")
+        f.write(timezone)
+        f.write("\n")
+        f.write(fajr_isha_method)
+        f.write("\n")
+        f.write(asr_fiqh)
+        f.write("\n")
+        # f.write("\n")
         f.close()
         # self.root.stop.set()
 
