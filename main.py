@@ -228,9 +228,49 @@ lang = {
 'artificial irigation' : [u'artificial irigation', u'\ufef2\ufecc\ufef4\ufe92\ufec1\u0020\ufef1\ufead\ufedf\ufe8d'],
 'natural irigation' : [u'natural irigation', u'\ufef2\ufe8b\ufe8e\ufed8\ufee0\ufe97\u0020\ufead\ufef4\ufecf\u0020\ufef1\ufead\ufedf\ufe8d'],
 'hanafi nisab' : [u'hanafi nisab', u'\ufef2\ufed4\ufee8\ufea4\ufedf\ufe8d\u0020\ufe8f\ufe8e\ufebc\ufee8\ufedf\ufe8d'],
-'others nisab' : [u'others nisab', u'\ufe94\ufee3\ufe8e\ufecc\ufedf\ufe8d\u0020\ufe8f\ufeb4\ufea3\u0020\ufe8f\ufe8e\ufebc\ufee8\ufedf\ufe8d']
+'others nisab' : [u'others nisab', u'\ufe94\ufee3\ufe8e\ufecc\ufedf\ufe8d\u0020\ufe8f\ufeb4\ufea3\u0020\ufe8f\ufe8e\ufebc\ufee8\ufedf\ufe8d'],
 
 
+
+'sunday' : [u'sunday', u'\ufea9\ufea3\ufef7\ufe8d'],
+'monday' : [u'monday', u'\ufee5\ufef4\ufee8\ufe9b\ufef9\ufe8d'],
+'tuesday' : [u'tuesday', u'\ufe80\ufe8e\ufe9b\ufefc\ufe9c\ufedf\ufe8d'],
+'wednesday' : [u'wednesday', u'\ufe80\ufe8e\ufecc\ufe91\ufead\ufef7\ufe8d'],
+'thursday' : [u'thursday', u'\ufeb1\ufef4\ufee4\ufea8\ufedf\ufe8d'],
+'friday' : [u'friday', u'\ufe94\ufecc\ufee4\ufea0\ufedf\ufe8d'],
+'saturday' : [u'saturday', u'\ufe95\ufe92\ufeb4\ufedf\ufe8d'],
+
+'january' : [u'january', u'\ufead\ufef3\ufe8e\ufee8\ufef3'],
+'february' : [u'february', u'\ufead\ufef3\ufe8d\ufead\ufe92\ufed3'],
+'march' : [u'march', u'\ufeb1\ufead\ufe8e\ufee3'],
+'april' : [u'april', u'\ufedd\ufef3\ufead\ufe91\ufe83'],
+'may' : [u'may', u'\ufef1\ufe8e\ufee3'],
+'june' : [u'june', u'\ufeed\ufef4\ufee7\ufeed\ufef3'],
+
+'july' : [u'july', u'\ufeaf\ufeed\ufef4\ufedf\ufeed\ufef3'],
+'august' : [u'august', u'\ufeb1\ufec1\ufeb4\ufecf\ufe83'],
+'september' : [u'september', u'\ufead\ufe92\ufee8\ufe98\ufeb7'],
+'october' : [u'october', u'\ufead\ufe91\ufeed\ufe98\ufedb\ufe83'],
+'november' : [u'november', u'\ufead\ufe92\ufee7\ufeed\ufee7'],
+'december' : [u'december', u'\ufead\ufe92\ufee8\ufe9f\ufea9'],
+
+
+'moharam' : [u'moharam', u'\ufee1\ufead\ufea4\ufee3'],
+'safar' : [u'safar', u'\ufead\ufed4\ufebb'],
+'rabii I' : [u'rabii I', u'\ufedd\ufeed\ufef7\ufe8d\u0020\ufeca\ufef4\ufe91\ufead'],
+'rabii II' : [u'rabii II', u'\ufef2\ufee7\ufe8e\ufe9c\ufedf\ufe8d\u0020\ufeca\ufef4\ufe91\ufead'],
+'joumada I' : [u'joumada I', u'\ufedd\ufeed\ufef7\ufe8d\u0020\ufeef\ufea9\ufe8e\ufee4\ufe9f'],
+'joumada II' : [u'joumada II', u'\ufef2\ufee7\ufe8e\ufe9c\ufedf\ufe8d\u0020\ufeef\ufea9\ufe8e\ufee4\ufe9f'],
+
+'rajab' : [u'rajab', u'\ufe8f\ufe9f\ufead'],
+'chaaban' : [u'chaaban', u'\ufee5\ufe8e\ufe92\ufecc\ufeb7'],
+'ramadan' : [u'ramadan', u'\ufee5\ufe8e\ufec0\ufee3\ufead'],
+'chawal' : [u'chawal', u'\ufedd\ufe8d\ufeed\ufeb7'],
+'dou al qiida' : [u'dou al qiida', u'\ufe93\ufea9\ufecc\ufed8\ufedf\ufe8d\u0020\ufeed\ufeab'],
+'dou al hijaa' : [u'dou al hijaa', u'\ufe94\ufea0\ufea4\ufedf\ufe8d\u0020\ufeed\ufeab'],
+
+'please restart the app to enable langage change' : [u'please restart the app to enable langage change', u'\ufedd\ufef4\ufecc\ufed4\ufe98\ufedf\u0020\ufed5\ufef4\ufe92\ufec1\ufe98\ufedf\ufe8d\u0020\ufea2\ufe98\ufed3\ufeed\u0020\ufed5\ufee0\ufecf\u0020\ufeed\ufe9f\ufead\ufee3'],
+'arabic' : [u'arabic', u'\ufe94\ufef4\ufe91\ufead\ufecc\ufedf\ufe8d']
 
 }
 
@@ -272,15 +312,22 @@ class Date:
 
     _julien_day = 1
 
-    weekday = ["dimanche", "lundi", "mardi", "mercredi", "jeudi",
-     "vendredi", "samedi"]
-    hijri_month = ["moharam", "safar", "rabii I", "rabii II", "joumada I", "joumada II",
-     "rajab", "chaaban", "ramadan", "chawal", "dou al qiida", "dou al hijaa"]
-    gregorien_month = ["janvier", "fevrier", "mars", "avril", "mai",
-     "juin", "juillet","aout","septembre","octobre","novembre","decembre"]
+    weekday = []
+
+    hijri_month = []
+
+    gregorien_month = []
+
+
+    # weekday = ["dimanche", "lundi", "mardi", "mercredi", "jeudi",
+    #  "vendredi", "samedi"]
+    # hijri_month = ["moharam", "safar", "rabii I", "rabii II", "joumada I", "joumada II",
+    #  "rajab", "chaaban", "ramadan", "chawal", "dou al qiida", "dou al hijaa"]
+    # gregorien_month = ["janvier", "fevrier", "mars", "avril", "mai",
+    #  "juin", "juillet","aout","septembre","octobre","novembre","decembre"]
 
     #def __init__(self, **kwargs):
-    def __init__(self, type, day, month, year):
+    def __init__(self, type, day, month, year, lg):
 
         if type == 'h': 
             self._hd = day
@@ -295,6 +342,46 @@ class Date:
             self._gy = year
             self.gregorien_to_julien()
             self.julien_to_hijri()
+
+
+
+        self.weekday = [
+        lang['sunday'][lg],
+        lang['monday'][lg],
+        lang['tuesday'][lg],
+        lang['wednesday'][lg],
+        lang['thursday'][lg],
+        lang['friday'][lg],
+        lang['saturday'][lg]]
+
+        self.hijri_month = [
+        lang['moharam'][lg],
+        lang['safar'][lg],
+        lang['rabii I'][lg],
+        lang['rabii II'][lg],
+        lang['joumada I'][lg],
+        lang['joumada II'][lg],
+        lang['rajab'][lg],
+        lang['chaaban'][lg],
+        lang['ramadan'][lg],
+        lang['chawal'][lg],
+        lang['dou al qiida'][lg],
+        lang['dou al hijaa'][lg]]
+
+        self.gregorien_month = [
+        lang['january'][lg],
+        lang['february'][lg],
+        lang['march'][lg],
+        lang['april'][lg],
+        lang['may'][lg],
+        lang['june'][lg],
+        lang['july'][lg],
+        lang['august'][lg],
+        lang['september'][lg],
+        lang['october'][lg],
+        lang['november'][lg],
+        lang['december'][lg]]
+
             
     def hijri_to_julien(self):
         YYH = self._hy
@@ -397,24 +484,45 @@ class Date:
             return True
         return False
 
-    def tell_day(self):
+    def tell_day(self, lg):
         if not self.check_gregorien_date(self._gd,self._gm):
             return 'invalid date'
         if not self.check_gregorien_date(self._hd,self._hm):
             return 'invalid date'
-        return str(self.weekday[int(self._day_week)])\
-        + ' '\
-        + str(int(self._hd))\
-        + ' '\
-        + str(self.hijri_month[int(self._hm)-1])\
-        + ' '\
-        + str(int(self._hy))\
-        + ' / '\
-        + str(int(self._gd))\
-        + ' '\
-        + str(self.gregorien_month[int(self._gm)-1])\
-        + ' '\
-        + str(int(self._gy))\
+
+        global ar
+        global eng
+
+        if lg == eng:
+            return str(self.weekday[int(self._day_week)])\
+            + ' '\
+            + str(int(self._hd))\
+            + ' '\
+            + str(self.hijri_month[int(self._hm)-1])\
+            + ' '\
+            + str(int(self._hy))\
+            + ' / '\
+            + str(int(self._gd))\
+            + ' '\
+            + str(self.gregorien_month[int(self._gm)-1])\
+            + ' '\
+            + str(int(self._gy))\
+
+
+        elif lg == ar:
+            return str(int(self._gy))\
+            + ' '\
+            + str(self.gregorien_month[int(self._gm)-1])\
+            + ' '\
+            + str(int(self._gd))\
+            + ' / '\
+            + str(int(self._hy))\
+            + ' '\
+            + str(self.hijri_month[int(self._hm)-1])\
+            + ' '\
+            + str(int(self._hd))\
+            + ' '\
+            + str(self.weekday[int(self._day_week)])\
 
 
 #build app with kv language
@@ -425,6 +533,8 @@ cvrt = '''
 
 #: import ar __main__.ar
 #: import eng __main__.eng
+
+
 
 
 <Zaitoun>:
@@ -461,9 +571,15 @@ cvrt = '''
         #     pos_hint: {'x':.85, 'y':.93}
         #     on_press: root.hide_menu()
 
+        canvas:
+            Rectangle:
+                pos: self.pos
+                size: self.size
+                source: 'bg.png'
+
         Label:
             id: title
-            text: lang['*Zaitoun utilities*'][ar]
+            text: lang['*Zaitoun utilities*'][root.curent_langage]
             font_name: 'simpbdo.ttf'
             # text: "*Zaitoun utilies*" #utf code mean menu in arabic
             size_hint: (.66, .2)
@@ -473,7 +589,7 @@ cvrt = '''
 
         Button:
             id: goto_date
-            text: lang['date converter'][ar]
+            text: lang['date converter'][root.curent_langage]
             font_name: 'simpbdo.ttf'
             size_hint: (.4, .1)
             pos_hint: {'x':.3, 'y':.66}
@@ -482,7 +598,7 @@ cvrt = '''
             # on_press: root.soundpl()
         Button:
             id: goto_prayer
-            text: lang['prayer time'][ar]
+            text: lang['prayer time'][root.curent_langage]
             font_name: 'simpbdo.ttf'
             size_hint: (.4, .1)
             pos_hint: {'x':.3, 'y':.54}
@@ -490,14 +606,14 @@ cvrt = '''
             # on_press: root.lauch_thread2()
         Button:
             id: goto_mirath
-            text: lang['mirath calculator'][ar]
+            text: lang['mirath calculator'][root.curent_langage]
             font_name: 'simpbdo.ttf'
             size_hint: (.4, .1)
             pos_hint: {'x':.3, 'y':.42}
             on_press: root.goto_layout(mirath)
         Button:
             id: goto_zakat
-            text: lang['zakat calculator'][ar]
+            text: lang['zakat calculator'][root.curent_langage]
             font_name: 'simpbdo.ttf'
             size_hint: (.4, .1)
             pos_hint: {'x':.3, 'y':.3}
@@ -506,7 +622,7 @@ cvrt = '''
         Button:
             id: langage_btn
             text: 'eng'
-            disabled: True
+            # disabled: True
             background_color: 0,2,1,1
             size_hint: (.2, .1)
             pos_hint: {'x':.4, 'y':.08}
@@ -553,6 +669,13 @@ cvrt = '''
         orientation: 'vertical'
         # opacity: 1 if root.ishist else 0
 
+        canvas:
+            Rectangle:
+                pos: self.pos
+                size: self.size
+                source: 'bg.png'
+
+
         ScrollView:
             id: date_list
             orientation: 'vertical'
@@ -569,7 +692,7 @@ cvrt = '''
 
         Button:
             id: ret_date_btn
-            text: lang['return'][ar]
+            text: lang['return'][root.curent_langage]
             font_name: 'simpbdo.ttf'
             #background_color: 0,2,1,1
             size_hint: (.2, .1)
@@ -578,7 +701,7 @@ cvrt = '''
 
         Button:
             id: add_date
-            text: lang['calculate'][ar]
+            text: lang['calculate'][root.curent_langage]
             font_name: 'simpbdo.ttf'
             #background_color: 0,2,1,1
             size_hint: (.2, .1)
@@ -587,7 +710,7 @@ cvrt = '''
 
         Label:
             id: result
-            text: lang['converted date'][ar]
+            text: lang['converted date'][root.curent_langage]
             font_name: 'simpbdo.ttf'
             size_hint: (.2, .1)
             pos_hint: {'x':.1, 'y':.35}
@@ -595,7 +718,7 @@ cvrt = '''
 
         Button:
             id: date_input
-            text: lang['touch here'][ar]
+            text: lang['touch here'][root.curent_langage]
             font_name: 'simpbdo.ttf'
             size_hint: (.2, .1)
             pos_hint: {'x':.4, 'y':.35}
@@ -604,7 +727,7 @@ cvrt = '''
 
         Button:
             id: delete_btn
-            text: lang['delete'][ar]
+            text: lang['delete'][root.curent_langage]
             font_name: 'simpbdo.ttf'
             #background_color: 0,2,1,1
             size_hint: (.2, .1)
@@ -634,6 +757,13 @@ cvrt = '''
         pos_hint: {'x':0, 'y':.0}
         id: praytime
 
+        canvas:
+            Rectangle:
+                pos: self.pos
+                size: self.size
+                source: 'bg.png'
+
+
 
         GridLayout:
             size_hint: (.6, .40)
@@ -652,7 +782,7 @@ cvrt = '''
                 Button:
                     id: sobh2
                     # background_color: 3,3,3,1
-                    text: lang['sobh'][ar]
+                    text: lang['sobh'][root.curent_langage]
                     font_name: 'simpbdo.ttf'
                 Label:
                     id: sobh
@@ -668,7 +798,7 @@ cvrt = '''
                     #     size: self.size
                 Button:
                     id: choroq2
-                    text: lang['choroq'][ar]
+                    text: lang['choroq'][root.curent_langage]
                     font_name: 'simpbdo.ttf'
                 Label:
                     id: choroq
@@ -684,7 +814,7 @@ cvrt = '''
                     #     size: self.size
                 Button:
                     id: dohr2
-                    text: lang['dohr'][ar]
+                    text: lang['dohr'][root.curent_langage]
                     font_name: 'simpbdo.ttf'
                 Label:
                     id: dohr
@@ -700,7 +830,7 @@ cvrt = '''
                     #     size: self.size
                 Button:
                     id: asr2
-                    text: lang['asr'][ar]
+                    text: lang['asr'][root.curent_langage]
                     font_name: 'simpbdo.ttf'
                 Label:
                     id: asr
@@ -716,7 +846,7 @@ cvrt = '''
                     #     size: self.size
                 Button:
                     id: maghrib2
-                    text: lang['maghrib'][ar]
+                    text: lang['maghrib'][root.curent_langage]
                     font_name: 'simpbdo.ttf'
                 Label:
                     id: maghrib
@@ -732,7 +862,7 @@ cvrt = '''
                     #     size: self.size
                 Button:
                     id: ishaa2
-                    text: lang['ishaa'][ar]
+                    text: lang['ishaa'][root.curent_langage]
                     font_name: 'simpbdo.ttf'
                 Label:
                     id: ishaa
@@ -740,7 +870,7 @@ cvrt = '''
 
         Button:
             id: config
-            text: lang['config'][ar]
+            text: lang['config'][root.curent_langage]
             font_name: 'simpbdo.ttf'
             size_hint: (.2, .09)
             pos_hint: {'x':.79, 'y':.80}
@@ -749,7 +879,7 @@ cvrt = '''
 
         Button:
             id: pray_config_ret
-            text: lang['return'][ar]
+            text: lang['return'][root.curent_langage]
             font_name: 'simpbdo.ttf'
             size_hint: (.2, .09)
             pos_hint: {'x':.79, 'y':.10}
@@ -757,7 +887,7 @@ cvrt = '''
             on_press: root.goto_layout(menu)
         Button:
             id: pray_calcul
-            text: lang['calculate'][ar]
+            text: lang['calculate'][root.curent_langage]
             font_name: 'simpbdo.ttf'
             size_hint: (.2, .09)
             pos_hint: {'x':.19, 'y':.10}
@@ -778,7 +908,7 @@ cvrt = '''
 
         ScreenLabel:
             id: qibla
-            text:  ' : ' + lang['qibla'][ar]
+            text:  ' : ' + lang['qibla'][root.curent_langage]
             font_name: 'simpbdo.ttf'
             size_hint: (.2, .09)
             pos_hint: {'x':.79, 'y':.20}
@@ -847,6 +977,13 @@ cvrt = '''
         size_hint: (1, 1)
         pos_hint: {'x':0, 'y':.0}
 
+        canvas:
+            Rectangle:
+                pos: self.pos
+                size: self.size
+                source: 'bg.png'
+
+
         BoxLayout:
             size_hint: (.8, .09)
             pos_hint: {'x':.1, 'y':.90}
@@ -855,7 +992,7 @@ cvrt = '''
                     rgba: 0,0,0,1
             Label:
                 id: timezone2
-                text: lang['timezone'][ar]
+                text: lang['timezone'][root.curent_langage]
                 font_name: 'simpbdo.ttf'
             Button:
                 id: timezone
@@ -871,7 +1008,7 @@ cvrt = '''
                     rgba: 0,0,0,1
             Label:
                 id: latitude2
-                text: lang['latitude'][ar]
+                text: lang['latitude'][root.curent_langage]
                 font_name: 'simpbdo.ttf'
             Button:
                 id: latitude
@@ -887,7 +1024,7 @@ cvrt = '''
                     rgba: 0,0,0,1
             Label:
                 id: longitude2
-                text: lang['longitude'][ar]
+                text: lang['longitude'][root.curent_langage]
                 font_name: 'simpbdo.ttf'
             Button:
                 id: longitude
@@ -904,16 +1041,16 @@ cvrt = '''
                     rgba: 0,0,0,1
             Label:
                 id: isha_ref2
-                text: lang['ishaa method'][ar]
+                text: lang['ishaa method'][root.curent_langage]
                 font_name: 'simpbdo.ttf'
             MySpinner:
                 id: isha_ref
-                text: lang['Egyptian General Authority of Survey'][ar]
-                values: (lang['University of Islamic Sciences, Karachi'][ar],\
-                lang['Muslim World League'][ar],\
-                lang['Egyptian General Authority of Survey'][ar],\
-                lang['Umm al-Qura University, Makkah'][ar],\
-                lang['Islamic Society of North America'][ar])
+                text: lang['Egyptian General Authority of Survey'][root.curent_langage]
+                values: (lang['University of Islamic Sciences, Karachi'][root.curent_langage],\
+                lang['Muslim World League'][root.curent_langage],\
+                lang['Egyptian General Authority of Survey'][root.curent_langage],\
+                lang['Umm al-Qura University, Makkah'][root.curent_langage],\
+                lang['Islamic Society of North America'][root.curent_langage])
                 font_name: 'simpbdo.ttf'
                 # background_color: 3,3,3,1
 
@@ -925,18 +1062,18 @@ cvrt = '''
                     rgba: 0,0,0,1
             Label:
                 id: asr_madhab2
-                text: lang['asr method'][ar]
+                text: lang['asr method'][root.curent_langage]
                 font_name: 'simpbdo.ttf'
             MySpinner:
                 id: asr_madhab
-                text: lang['Hanafi'][ar]
-                values: (lang['Shafii'][ar], lang['Hanafi'][ar])
+                text: lang['Hanafi'][root.curent_langage]
+                values: (lang['Shafii'][root.curent_langage], lang['Hanafi'][root.curent_langage])
                 font_name: 'simpbdo.ttf'
                 # background_color: 3,3,3,1
 
         Button:
             id: pray_ret
-            text: lang['return'][ar]
+            text: lang['return'][root.curent_langage]
             font_name: 'simpbdo.ttf'
             size_hint: (.2, .09)
             pos_hint: {'x':.79, 'y':.10}
@@ -971,6 +1108,12 @@ cvrt = '''
         pos_hint: {'x':0, 'y':.0}
         orientation: 'vertical'
         # opacity: 1 if root.ishist else 0
+
+        canvas:
+            Rectangle:
+                pos: self.pos
+                size: self.size
+                source: 'bg.png'
 
 
         Accordion:
@@ -1014,7 +1157,7 @@ cvrt = '''
 
         # Button:
         #     id: add_mirath
-        #     text: lang['add relative'][ar]
+        #     text: lang['add relative'][root.curent_langage]
         #     font_name: 'simpbdo.ttf'
         #     text: 'add relative'
         #     #background_color: 0,2,1,1
@@ -1025,7 +1168,7 @@ cvrt = '''
         Label:
             id: m_result
             text: ''
-            # text: lang[''][ar]
+            # text: lang[''][root.curent_langage]
             # font_name: 'simpbdo.ttf'
             size_hint: (.2, .1)
             pos_hint: {'x':.1, 'y':.4}
@@ -1033,7 +1176,7 @@ cvrt = '''
 
         Button:
             id: mirath_input
-            text: lang['calculate'][ar]
+            text: lang['calculate'][root.curent_langage]
             font_name: 'simpbdo.ttf'
             size_hint: (.2, .08)
             pos_hint: {'x':.4, 'y':.1}
@@ -1051,36 +1194,36 @@ cvrt = '''
             MySpinner:
                 id: relative
                 font_name: 'simpbdo.ttf'
-                text: lang['husband'][ar]
-                values: (lang['husband'][ar],\
-                lang['wife'][ar],\
-                lang['son'][ar],\
-                lang['daughter'][ar],\
-                lang['grandson'][ar],\
-                lang['granddaughter'][ar],\
-                lang['father'][ar],\
-                lang['mother'][ar],\
-                lang['grandfather'][ar],\
-                lang['paternal_grandmother'][ar],\
-                lang['maternal_grandmother'][ar],\
-                lang['brother'][ar],\
-                lang['sister'][ar],\
-                lang['paternal_brother'][ar],\
-                lang['paternal_sister'][ar],\
-                lang['maternal_brother'][ar],\
-                lang['maternal_sister'][ar],\
-                lang['nephew'][ar],\
-                lang['paternal_nephew'][ar],\
-                lang['nephew_son'][ar],\
-                lang['paternal_nephew_son'][ar],\
-                lang['paternal_uncle'][ar],\
-                lang['paternal_paternal_uncle'][ar],\
-                lang['cousin'][ar],\
-                lang['cousin_son'][ar],\
-                lang['paternal_cousin'][ar],\
-                lang['paternal_cousin_son'][ar],\
-                lang['cousin_grandson'][ar],\
-                lang['paternal_cousin_grandson'][ar]\
+                text: lang['husband'][root.curent_langage]
+                values: (lang['husband'][root.curent_langage],\
+                lang['wife'][root.curent_langage],\
+                lang['son'][root.curent_langage],\
+                lang['daughter'][root.curent_langage],\
+                lang['grandson'][root.curent_langage],\
+                lang['granddaughter'][root.curent_langage],\
+                lang['father'][root.curent_langage],\
+                lang['mother'][root.curent_langage],\
+                lang['grandfather'][root.curent_langage],\
+                lang['paternal_grandmother'][root.curent_langage],\
+                lang['maternal_grandmother'][root.curent_langage],\
+                lang['brother'][root.curent_langage],\
+                lang['sister'][root.curent_langage],\
+                lang['paternal_brother'][root.curent_langage],\
+                lang['paternal_sister'][root.curent_langage],\
+                lang['maternal_brother'][root.curent_langage],\
+                lang['maternal_sister'][root.curent_langage],\
+                lang['nephew'][root.curent_langage],\
+                lang['paternal_nephew'][root.curent_langage],\
+                lang['nephew_son'][root.curent_langage],\
+                lang['paternal_nephew_son'][root.curent_langage],\
+                lang['paternal_uncle'][root.curent_langage],\
+                lang['paternal_paternal_uncle'][root.curent_langage],\
+                lang['cousin'][root.curent_langage],\
+                lang['cousin_son'][root.curent_langage],\
+                lang['paternal_cousin'][root.curent_langage],\
+                lang['paternal_cousin_son'][root.curent_langage],\
+                lang['cousin_grandson'][root.curent_langage],\
+                lang['paternal_cousin_grandson'][root.curent_langage]\
                 )
 
                 # background_color: 3,3,3,1
@@ -1092,7 +1235,7 @@ cvrt = '''
                 # background_color: 3,3,3,1
             Button:
                 id: add_relative
-                text: lang['add relative'][ar]
+                text: lang['add relative'][root.curent_langage]
                 font_name: 'simpbdo.ttf'
                 on_press: root.add_relative()
 
@@ -1100,7 +1243,7 @@ cvrt = '''
 
         Button:
             id: mirath_cln
-            text: lang['clean'][ar]
+            text: lang['clean'][root.curent_langage]
             font_name: 'simpbdo.ttf'
             #background_color: 0,2,1,1
             size_hint: (.2, .08)
@@ -1109,7 +1252,7 @@ cvrt = '''
 
         Button:
             id: mirath_del
-            text: lang['delete'][ar]
+            text: lang['delete'][root.curent_langage]
             font_name: 'simpbdo.ttf'
             disabled: True
             #background_color: 0,2,1,1
@@ -1119,7 +1262,7 @@ cvrt = '''
 
         Button:
             id: mirath_ret
-            text: lang['return'][ar]
+            text: lang['return'][root.curent_langage]
             font_name: 'simpbdo.ttf'
             #background_color: 0,2,1,1
             size_hint: (.2, .08)
@@ -1151,6 +1294,13 @@ cvrt = '''
         pos_hint: {'x':0, 'y':.0}
         orientation: 'vertical'
 
+        canvas:
+            Rectangle:
+                pos: self.pos
+                size: self.size
+                source: 'bg.png'
+
+
 
         ScreenLabel:
             id: z_result
@@ -1161,7 +1311,7 @@ cvrt = '''
 
         Button:
             id: zakat_input
-            text: lang['touch here'][ar]
+            text: lang['touch here'][root.curent_langage]
             font_name: 'simpbdo.ttf'
             size_hint: (.2, .1)
             pos_hint: {'x':.4, 'y':.7}
@@ -1169,7 +1319,7 @@ cvrt = '''
 
         Button:
             id: zakat_validate
-            text: lang['calculate'][ar]
+            text: lang['calculate'][root.curent_langage]
             font_name: 'simpbdo.ttf'
             size_hint: (.2, .08)
             pos_hint: {'x':.4, 'y':.6}
@@ -1183,7 +1333,7 @@ cvrt = '''
 
         Button:
             id: zakat_type
-            text: lang['money'][ar]
+            text: lang['money'][root.curent_langage]
             font_name: 'simpbdo.ttf'
             size_hint: (.16, .08)
             pos_hint: {'x':.17, 'y':.3}
@@ -1192,7 +1342,7 @@ cvrt = '''
 
         Button:
             id: irigation_type
-            text: lang['natural irigation'][ar]
+            text: lang['natural irigation'][root.curent_langage]
             font_name: 'simpbdo.ttf'
             disabled: True
             size_hint: (.16, .08)
@@ -1202,7 +1352,7 @@ cvrt = '''
 
         Button:
             id: zakat_madhab
-            text: lang['hanafi nisab'][ar]
+            text: lang['hanafi nisab'][root.curent_langage]
             font_name: 'simpbdo.ttf'
             disabled: True
             size_hint: (.16, .08)
@@ -1214,7 +1364,7 @@ cvrt = '''
 
         Button:
             id: zakat_ret
-            text: lang['return'][ar]
+            text: lang['return'][root.curent_langage]
             font_name: 'simpbdo.ttf'
             #background_color: 0,2,1,1
             size_hint: (.2, .1)
@@ -1300,7 +1450,7 @@ cvrt = '''
             Button:
                 id: ok
                 font_name: 'simpbdo.ttf'
-                text: lang['ok'][ar]
+                text: lang['ok'][root.curent_langage]
 
                 on_press: root.validate(kb_val.text)
                 # on_press: root.convert(kb_val)
@@ -1313,7 +1463,7 @@ cvrt = '''
 
             Button:
                 id: clean_kb
-                text: lang['clean'][ar]
+                text: lang['clean'][root.curent_langage]
                 font_name: 'simpbdo.ttf'
                 # text: u'clean'
                 on_press: kb_val.text = ''
@@ -1592,7 +1742,29 @@ class Zaitoun(FloatLayout):
 
     global ar
     global eng
-    curent_langage = ar
+
+    #read langage
+    try:
+        f = open("pray_conf.dat")
+        line = f.readline()
+        line = f.readline()
+        line = f.readline()
+        line = f.readline()
+        line = f.readline()
+        line = f.readline()
+        curent_langage = int(line[:-1])
+        mem_langage = int(line[:-1])
+
+        # self.wdg.ids.latitude.text = f.readline()
+        # self.wdg.ids.longitude.text = f.readline()
+        # self.wdg.ids.timezone.text = f.readline()
+        # self.wdg.ids.isha_ref.text = f.readline()
+    
+        f.close()
+            
+    except :
+        curent_langage = eng
+        mem_langage = eng
 
     date = FloatLayout()
     pray_conf = FloatLayout()
@@ -1615,6 +1787,8 @@ class Zaitoun(FloatLayout):
     # 's' for hanafi and 'o' for other
     zakat_madhab = 'h'
 
+    #message widget
+    message = Label()
 
     # global ype
     
@@ -1654,6 +1828,17 @@ class Zaitoun(FloatLayout):
             self.pray_conf = self.ids.praytime_config
             self.clear_widgets()
             self.add_widget(self.ids.menu)
+
+            global ar
+            global eng
+
+            langage_btn = self.ids.langage_btn
+            if self.curent_langage == ar:
+                langage_btn.background_color = 0,2,1,1
+                langage_btn.text = "ar"
+            elif self.curent_langage == eng:
+                langage_btn.background_color = 0,1,2,1
+                langage_btn.text = "eng"
 
 
             # self.goto_layout(self.ids.praytime_config)
@@ -1753,7 +1938,8 @@ class Zaitoun(FloatLayout):
 
     def convert(self, date_input):
 
-        if self.ids.date_input.text == lang['touch here'][ar]:
+        lg = self.curent_langage
+        if self.ids.date_input.text == lang['touch here'][lg]:
             return
 
         result = self.ids.result
@@ -1763,10 +1949,10 @@ class Zaitoun(FloatLayout):
         date_type = self.date_type
 
         day, month, year = date_input.text.split('-', 2)
-        date = Date(date_type,int(day),int(month),int(year))
+        date = Date(date_type,int(day),int(month),int(year),lg)
 
         # date_input.text = '23-06-2019'
-        result.text = (str)(date.tell_day()) 
+        result.text = (str)(date.tell_day(lg)) 
 
 
 
@@ -1784,7 +1970,7 @@ class Zaitoun(FloatLayout):
             size2 = len(self.ids.date_box.children)
             converted_date.append(result.text)
             
-            btn = Button(text= converted_date[size], id= str(size))
+            btn = Button(text= converted_date[size], id= str(size), font_name= 'simpbdo.ttf')
             # btn = Button(text= str(size), id= str(size))
             btn.bind(on_press= self.auto_destruct)
             self.ids.date_box.add_widget(btn, size2)
@@ -1919,14 +2105,14 @@ class Zaitoun(FloatLayout):
         #method 1
         dat = date.today()
         tim = datetime.now()
-        mydate = Date('g', dat.day, dat.month, dat.year)
+        mydate = Date('g', dat.day, dat.month, dat.year, self.curent_langage)
 
         minute = str(tim.minute)
 
         if tim.minute < 10 :
             minute = "0" + minute
 
-        self.ids.today_date.text = mydate.tell_day() + '\n' + str(tim.hour) + ':' + minute
+        self.ids.today_date.text = mydate.tell_day(lg) + '\n' + str(tim.hour) + ':' + minute
 
         #method 2
         # hijri = HijriDate.today()
@@ -1964,7 +2150,7 @@ class Zaitoun(FloatLayout):
 
 
         print(self.needle_angle)
-        self.ids.qibla.text = str("{0:.2f}".format(-t_angle)) + ' : ' + lang['qibla'][ar]
+        self.ids.qibla.text = str("{0:.2f}".format(-t_angle)) + ' : ' + lang['qibla'][self.curent_langage]
         # "{0:.2f}".format(self.needle_angle)
 
 
@@ -2054,7 +2240,7 @@ class Zaitoun(FloatLayout):
 
 
         #security
-        if self.ids.zakat_input.text == lang['touch here'][ar]:
+        if self.ids.zakat_input.text == lang['touch here'][self.curent_langage]:
             return
                 # if self.ids.zakat_input.text == get_key_tab(self, lang, u'touch here', lg):
 
@@ -2079,32 +2265,69 @@ class Zaitoun(FloatLayout):
     def change_zakat_type(self):
         if self.zakat_type == 'm':
             self.zakat_type = 'h'
-            self.ids.zakat_type.text = lang['harvest'][ar]
+            self.ids.zakat_type.text = lang['harvest'][self.curent_langage]
             self.ids.irigation_type.disabled = False
             self.ids.zakat_madhab.disabled = False
         else:
             self.zakat_type = 'm'
-            self.ids.zakat_type.text = lang['money'][ar]
+            self.ids.zakat_type.text = lang['money'][self.curent_langage]
             self.ids.irigation_type.disabled = True
             self.ids.zakat_madhab.disabled = True
 
     def change_irigation_type(self):
         if self.irigation_type == 'n':
             self.irigation_type = 'a'
-            self.ids.irigation_type.text = lang['artificial irigation'][ar]
+            self.ids.irigation_type.text = lang['artificial irigation'][self.curent_langage]
         else:
             self.irigation_type = 'n'
-            self.ids.irigation_type.text = lang['natural irigation'][ar]
+            self.ids.irigation_type.text = lang['natural irigation'][self.curent_langage]
 
     def change_zakat_madhab(self):
         if self.zakat_madhab == 'h':
             self.zakat_madhab = 'o'
-            self.ids.zakat_madhab.text = lang['others nisab'][ar]
+            self.ids.zakat_madhab.text = lang['others nisab'][self.curent_langage]
         else:
             self.zakat_madhab = 'h'
-            self.ids.zakat_madhab.text = lang['hanafi nisab'][ar]
+            self.ids.zakat_madhab.text = lang['hanafi nisab'][self.curent_langage]
+
+
+    def attach_message(self):
+        # mem_lg = self.mem_langage
+        lg = self.curent_langage
+        lb = ScreenLabel(text= lang['please restart the app to enable langage change'][lg],
+        font_name= 'simpbdo.ttf', font_size= 20,
+        id= 'message', pos_hint= {'x':0, 'y':.45}, size_hint= (1,.1))
+        self.add_widget(lb)
+        self.message = lb
+
+    def dettach_message(self):
+        self.remove_widget(self.message)
 
     def change_langage(self):
+        global ar
+        global eng
+
+        langage_btn = self.ids.langage_btn
+        if self.curent_langage == ar:
+            self.curent_langage = eng
+            langage_btn.background_color = 0,1,2,1
+            langage_btn.text = "eng"
+        elif self.curent_langage == eng:
+            self.curent_langage = ar
+            langage_btn.background_color = 0,2,1,1
+            langage_btn.text = "ar"
+        print(self.curent_langage)
+        # exit()
+        mem_lg = self.mem_langage
+        lg = self.curent_langage
+
+        if lg == mem_lg:
+            self.dettach_message()
+        else:
+            self.attach_message()
+
+
+    def change_langage_broken(self):
 
         global ar
         global eng
@@ -2246,7 +2469,6 @@ class ZaitounApp(App):
         self.icon = 'Zaitoun.png'
         self.wdg = Zaitoun(size= Window.size)
         main_wdg = self.wdg
-        lg = self.wdg.curent_langage
 
 
 
@@ -2265,7 +2487,7 @@ class ZaitounApp(App):
                 #btn = Button(text= 'btn'+str(i), id= 'btn'+str(i), on_press= lambda a:self.wdg.auto_destruct())
                 #btn = Button(text= converted_date[i], id='btn'+str(i))
                 # btn = Button(text= str(i), id = str(i))
-                btn = Button(text= converted_date[i], id = str(i))
+                btn = Button(text= converted_date[i], id = str(i), font_name= 'simpbdo.ttf')
                 btn.bind(on_press= self.wdg.auto_destruct)
                 #btn = Button(text= converted_date[i], id= 'btn'+str(i))
                 main_wdg.ids.date_box.add_widget(btn, len(main_wdg.ids.date_box.children))
@@ -2279,6 +2501,7 @@ class ZaitounApp(App):
         except:
             pass
 
+        lg = self.wdg.curent_langage
 
         try:
             f = open("pray_conf.dat")
@@ -2292,6 +2515,8 @@ class ZaitounApp(App):
             main_wdg.ids.isha_ref.text = lang[line[:-1]][lg]
             line = f.readline()
             main_wdg.ids.asr_madhab.text = lang[line[:-1]][lg]
+            line = f.readline()
+            main_wdg.curent_langage = int(line[:-1])
 
             # self.wdg.ids.latitude.text = f.readline()
             # self.wdg.ids.longitude.text = f.readline()
@@ -2320,8 +2545,8 @@ class ZaitounApp(App):
 
     #when user exit the app auto-save his session
     def on_stop(self):
-        lg = self.wdg.curent_langage
-
+        # lg = self.wdg.curent_langage
+        lg = self.wdg.mem_langage
 
         # f = open("pray_conf.dat", "w")
         f = open("date_log.dat", "w")
@@ -2357,6 +2582,9 @@ class ZaitounApp(App):
         f.write(fajr_isha_method)
         f.write("\n")
         f.write(asr_fiqh)
+        f.write("\n")
+        f.write(str(self.wdg.curent_langage))
+        print("saved langage : " + str(self.wdg.curent_langage))
         f.write("\n")
         # f.write("\n")
         f.close()
