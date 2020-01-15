@@ -2,7 +2,7 @@
 author  :   monsef alahem
 email   :   m.alahem09@gmail.com
 version :   1.0
-start   :   09-08-2019
+start   :   08-09-2019
 
 '''
 # import os
@@ -216,8 +216,10 @@ lang = {
 'clean' : [u'clean', u'\ufecd\ufe8d\ufead\ufed3\ufe87'],
 'config' : [u'config', u'\ufea9\ufe8d\ufea9\ufecb\ufe87'],
 
-'steps' : [u'steps', u'\ufe94\ufea0\ufef4\ufe98\ufee8\ufedf\ufe8d'],
-'results' : [u'results', u'\ufe95\ufe8d\ufeed\ufec1\ufea8\ufedf\ufe8d'],
+'steps' : [u'steps', u'khotowat'],
+'results' : [u'results', u'natija'],
+# 'steps' : [u'steps', u'\ufe94\ufea0\ufef4\ufe98\ufee8\ufedf\ufe8d'],
+# 'results' : [u'results', u'\ufe95\ufe8d\ufeed\ufec1\ufea8\ufedf\ufe8d'],
 
 'touch here' : [u'touch here', u'\ufe8e\ufee8\ufeeb\u0020\ufec1\ufed0\ufec5\ufe8d'],
 
@@ -661,6 +663,7 @@ cvrt = '''
 
 
 
+
 # date
     FloatLayout:
         id: date
@@ -710,6 +713,12 @@ cvrt = '''
 
         Label:
             id: result
+            canvas.before:
+                Color:
+                    rgba: 0,0,0,1
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
             text: lang['converted date'][root.curent_langage]
             font_name: 'simpbdo.ttf'
             size_hint: (.2, .1)
@@ -741,6 +750,11 @@ cvrt = '''
             size_hint: (.2, .1)
             pos_hint: {'x':.4, 'y':.08}
             on_press: root.change_type()
+
+
+
+
+
 
 
 
@@ -784,7 +798,7 @@ cvrt = '''
                     # background_color: 3,3,3,1
                     text: lang['sobh'][root.curent_langage]
                     font_name: 'simpbdo.ttf'
-                Label:
+                ScreenLabel:
                     id: sobh
                     text: ''
 
@@ -800,7 +814,7 @@ cvrt = '''
                     id: choroq2
                     text: lang['choroq'][root.curent_langage]
                     font_name: 'simpbdo.ttf'
-                Label:
+                ScreenLabel:
                     id: choroq
                     text: ''
 
@@ -816,7 +830,7 @@ cvrt = '''
                     id: dohr2
                     text: lang['dohr'][root.curent_langage]
                     font_name: 'simpbdo.ttf'
-                Label:
+                ScreenLabel:
                     id: dohr
                     text: ''
 
@@ -832,7 +846,7 @@ cvrt = '''
                     id: asr2
                     text: lang['asr'][root.curent_langage]
                     font_name: 'simpbdo.ttf'
-                Label:
+                ScreenLabel:
                     id: asr
                     text: ''
 
@@ -848,7 +862,7 @@ cvrt = '''
                     id: maghrib2
                     text: lang['maghrib'][root.curent_langage]
                     font_name: 'simpbdo.ttf'
-                Label:
+                ScreenLabel:
                     id: maghrib
                     text: ''
 
@@ -864,7 +878,7 @@ cvrt = '''
                     id: ishaa2
                     text: lang['ishaa'][root.curent_langage]
                     font_name: 'simpbdo.ttf'
-                Label:
+                ScreenLabel:
                     id: ishaa
                     text: ''
 
@@ -897,19 +911,28 @@ cvrt = '''
 
         Label:
             id: today_date
-            # font_name: 'simpbdo.ttf'
+            canvas.before:
+                Color:
+                    rgba: 0,0,0,1
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+            font_name: 'simpbdo.ttf'
             text: ''
             halign: "center"
             size_hint: (.6, .09)
             pos_hint: {'x':.2, 'y':.90}
-            canvas:
+
+        Label:
+            id: qibla
+            canvas.before:
                 Color:
                     rgba: 0,0,0,1
-
-        ScreenLabel:
-            id: qibla
-            text:  ' : ' + lang['qibla'][root.curent_langage]
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
             font_name: 'simpbdo.ttf'
+            text:  ' : ' + lang['qibla'][root.curent_langage]
             size_hint: (.2, .09)
             pos_hint: {'x':.79, 'y':.20}
 
@@ -928,8 +951,8 @@ cvrt = '''
                     # Rotate:
                     #     angle: root.needle_angle
                     #     origin: self.center
-                    Rectangle:
-                        source: 'none.png'
+                    # Rectangle:
+                        # source: 'none.png'
                         # pos: 0.1, 0.1
                         # pos: 0.2*root.size[0]-25, 0.7*root.size[1]-25
                     Color: 
@@ -990,7 +1013,7 @@ cvrt = '''
             canvas:
                 Color:
                     rgba: 0,0,0,1
-            Label:
+            ScreenLabel:
                 id: timezone2
                 text: lang['timezone'][root.curent_langage]
                 font_name: 'simpbdo.ttf'
@@ -1006,7 +1029,7 @@ cvrt = '''
             canvas:
                 Color:
                     rgba: 0,0,0,1
-            Label:
+            ScreenLabel:
                 id: latitude2
                 text: lang['latitude'][root.curent_langage]
                 font_name: 'simpbdo.ttf'
@@ -1022,7 +1045,7 @@ cvrt = '''
             canvas:
                 Color:
                     rgba: 0,0,0,1
-            Label:
+            ScreenLabel:
                 id: longitude2
                 text: lang['longitude'][root.curent_langage]
                 font_name: 'simpbdo.ttf'
@@ -1039,7 +1062,7 @@ cvrt = '''
             canvas:
                 Color:
                     rgba: 0,0,0,1
-            Label:
+            ScreenLabel:
                 id: isha_ref2
                 text: lang['ishaa method'][root.curent_langage]
                 font_name: 'simpbdo.ttf'
@@ -1060,7 +1083,7 @@ cvrt = '''
             canvas:
                 Color:
                     rgba: 0,0,0,1
-            Label:
+            ScreenLabel:
                 id: asr_madhab2
                 text: lang['asr method'][root.curent_langage]
                 font_name: 'simpbdo.ttf'
@@ -1122,7 +1145,7 @@ cvrt = '''
             orientation: 'vertical'
 
             AccordionItem:
-                title: 'Panel 1'
+                title: lang['results'][root.curent_langage]
 
                 ScrollView:
                     id: mirath_list
@@ -1137,7 +1160,7 @@ cvrt = '''
                         #on_touch_down: root.hide_kb()
 
             AccordionItem:
-                title: 'Panel 2'
+                title: lang['steps'][root.curent_langage]
 
                 ScrollView:
                     id: mirath_log_sv
@@ -1165,7 +1188,7 @@ cvrt = '''
         #     pos_hint: {'x':.7, 'y':.4}
         #     on_press: root.convert(date_input)
 
-        Label:
+        ScreenLabel:
             id: m_result
             text: ''
             # text: lang[''][root.curent_langage]
@@ -1722,11 +1745,16 @@ class ZaitounLabel(Label):
 
 #same here with black color
 class ScreenLabel(Label):
+    # def __init__(self, **kwargs):
+    #     super(ScreenLabel, self).__init__(**kwargs)
+    #     self.on_size()
+
     def on_size(self, *args):
         self.canvas.before.clear()
         with self.canvas.before:
             Color(0, 0, 0, 1)
             Rectangle(pos=self.pos, size=self.size)
+
 
 class Zaitoun(FloatLayout):
 
@@ -1812,16 +1840,16 @@ class Zaitoun(FloatLayout):
             # p.open()
             # p.dismiss()
 
-            global latitude
-            latitude = self.ids.latitude.text
-            global longitude
-            longitude = self.ids.longitude.text
-            global timezone
-            timezone = self.ids.timezone.text
-            global fajr_isha_method
-            fajr_isha_method = self.ids.isha_ref.text
-            global asr_fiqh
-            asr_fiqh = self.ids.asr_madhab.text
+            # global latitude
+            # latitude = self.ids.latitude.text
+            # global longitude
+            # longitude = self.ids.longitude.text
+            # global timezone
+            # timezone = self.ids.timezone.text
+            # global fajr_isha_method
+            # fajr_isha_method = self.ids.isha_ref.text
+            # global asr_fiqh
+            # asr_fiqh = self.ids.asr_madhab.text
 
 
             self.date = self.ids.date
@@ -1850,14 +1878,15 @@ class Zaitoun(FloatLayout):
             #     self.sound.play()
 
             for i in range(10):
-                lbl = Label(text= '')
+                lbl = ScreenLabel(text= '')
                 # lbl = Label(text= str(i))
                 self.ids.mirath_box.add_widget(lbl)
+
 
             # print(get_key(asr_ref, 1))
             # print(get_key_tab(self,lang, '\ufedd\ufeed\ufec1\ufedf\ufe8d\u0020\ufec2\ufea7', ar))
             # self.ids.date.clear_widgets
-
+            # self.ids.timezone2.resize()
 
 
         # for i in range(15):
@@ -2176,7 +2205,7 @@ class Zaitoun(FloatLayout):
         box = BoxLayout()
         btn = Button(text= number)
         box.add_widget(btn)
-        lbl = Label(text= relative, font_name= 'simpbdo.ttf')
+        lbl = ScreenLabel(text= relative, font_name= 'simpbdo.ttf')
         box.add_widget(lbl)
         btn2 = Button()
         box.add_widget(btn2)
@@ -2492,7 +2521,7 @@ class ZaitounApp(App):
                 #btn = Button(text= converted_date[i], id= 'btn'+str(i))
                 main_wdg.ids.date_box.add_widget(btn, len(main_wdg.ids.date_box.children))
             for i in range(10):
-                img = Label(text= '')
+                img = ScreenLabel(text= '')
                 main_wdg.ids.date_box.add_widget(img, 0)
 
             # main_wdg.ids.hist_box.size_hint_y= .1 * (i + 1)
@@ -2506,17 +2535,28 @@ class ZaitounApp(App):
         try:
             f = open("pray_conf.dat")
             line = f.readline()
-            main_wdg.ids.latitude.text = line[:-1]
+            if not line[:-1] == '':
+                main_wdg.ids.latitude.text = line[:-1]
+            
             line = f.readline()
-            main_wdg.ids.longitude.text = line[:-1]
+            if not line[:-1] == '':
+                main_wdg.ids.longitude.text = line[:-1]
+            
             line = f.readline()
-            main_wdg.ids.timezone.text = line[:-1]
+            if not line[:-1] == '':
+                main_wdg.ids.timezone.text = line[:-1]
+            
             line = f.readline()
-            main_wdg.ids.isha_ref.text = lang[line[:-1]][lg]
+            if not line[:-1] == '':
+                main_wdg.ids.isha_ref.text = lang[line[:-1]][lg]
+            
             line = f.readline()
-            main_wdg.ids.asr_madhab.text = lang[line[:-1]][lg]
+            if not line[:-1] == '':
+                main_wdg.ids.asr_madhab.text = lang[line[:-1]][lg]
+            
             line = f.readline()
-            main_wdg.curent_langage = int(line[:-1])
+            if not line[:-1] == '':
+                main_wdg.curent_langage = int(line[:-1])
 
             # self.wdg.ids.latitude.text = f.readline()
             # self.wdg.ids.longitude.text = f.readline()
